@@ -24,7 +24,7 @@ module FIFO_array #(parameter depth=32)(data_in,data_out,clk,wr_en,rd_en,wr_ptr,
 
     input [7:0] data_in;
     input clk,wr_en,rd_en,rst;
-    input [5:0] wr_ptr;
+    input [31:0] wr_ptr;
     output [7:0] data_out;
     reg [7:0] mem[depth-1:0];
     integer i;
@@ -36,7 +36,7 @@ module FIFO_array #(parameter depth=32)(data_in,data_out,clk,wr_en,rd_en,wr_ptr,
         else if(rd_en) 
          begin
             for(i=0;i<depth-1;i=i+1) mem[i] = mem[i+1];
-            mem[31] = 8'b0;
+            mem[depth-1] = 8'b0;
          end
     end
     

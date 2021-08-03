@@ -24,15 +24,15 @@ module Write_pointer(full,clk,rst,wr,wr_ptr,wr_en,rd_en);
     
     input clk,rst,full,wr,rd_en;
     output wr_en;
-    output reg [5:0] wr_ptr;
+    output reg [31:0] wr_ptr;
     
     assign wr_en = (~full) & wr;    
     
     always @(posedge clk, negedge rst)
     begin
-        if(~rst) wr_ptr <= 6'd0;
-        else if(wr_en) wr_ptr <= wr_ptr + 6'd1;
-        else if(rd_en) wr_ptr <= wr_ptr - 6'd1;
+        if(~rst) wr_ptr <= 32'd0;
+        else if(wr_en) wr_ptr <= wr_ptr + 32'd1;
+        else if(rd_en) wr_ptr <= wr_ptr - 32'd1;
         else wr_ptr <= wr_ptr;
     end
     
